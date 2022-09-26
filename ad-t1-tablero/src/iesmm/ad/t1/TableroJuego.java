@@ -8,6 +8,7 @@ public class TableroJuego {
 	private Ficha [][] tablero;
 	
 	public TableroJuego(int nfilas, int ncolumnas) {
+		System.out.println("Alejandro");
 	}
 	
 	public TableroJuego(File f) {
