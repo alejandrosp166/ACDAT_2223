@@ -8,10 +8,12 @@ public class TableroJuego {
 	private Ficha [][] tablero;
 	
 	public TableroJuego(int nfilas, int ncolumnas) {
-		System.out.println("Alejandro");
+		this.nfilas = nfilas;
+		this.ncolumnas = ncolumnas;
 	}
 	
 	public TableroJuego(File f) {
+
 	}
 	
 	@Override

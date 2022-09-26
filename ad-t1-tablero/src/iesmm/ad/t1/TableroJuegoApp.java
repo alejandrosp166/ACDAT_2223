@@ -34,4 +34,7 @@
  */
 
 public class TableroJuegoApp {
+    public static void main(String[] args) {
+        TableroJuego tablero = new TableroJuegoApp();
+    }
 }
