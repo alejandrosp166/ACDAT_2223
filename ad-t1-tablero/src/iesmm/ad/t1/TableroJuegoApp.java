@@ -35,6 +35,7 @@
 
 public class TableroJuegoApp {
     public static void main(String[] args) {
-        TableroJuego tablero = new TableroJuegoApp();
+        File propiedades = new File("C:\\Users\\asecpin2303_iesmarti\\Documents\\ProyectosIntelliJ\\ACDAT_2223\\ad-t1-tablero\\res\\tablero.props")
+        TableroJuego tablero = new TableroJuegoApp(propiedades);
     }
 }

@@ -8,8 +8,7 @@ public class TableroJuego {
 	private Ficha [][] tablero;
 	
 	public TableroJuego(int nfilas, int ncolumnas) {
-		this.nfilas = nfilas;
-		this.ncolumnas = ncolumnas;
+
 	}
 	
 	public TableroJuego(File f) {
