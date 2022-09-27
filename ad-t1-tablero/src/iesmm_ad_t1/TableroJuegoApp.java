@@ -1,4 +1,4 @@
-﻿package iesmm.ad.t1;
+package iesmm_ad_t1;
 /*
     Desarrollar TableroJuegoApp, implementando los métodos de la clase TableroJuego y Ficha para que permita:
     * leer la información de un fichero properties compuesto de:
@@ -8,20 +8,7 @@
     * representar en cada ficha un valor posible aleatorio.
 
     Recuerda incluir el tratamiento de errores y posibles excepciones.
-
-
-    Ejemplo:
-
-    =================
-    res/tablero.props
-    =================
-    # Dimensiones tablero
-    rows=3
-    cols=4
-
-    # Fichas
-    value1=🔴
-    value2=❌
+    EJEMPLO -> Valores negativos en el array
 
     Representación generada:
     +-----------------+
@@ -32,19 +19,20 @@
 
  */
 
+import java.io.*;
+import java.util.Properties;
+
 public class TableroJuegoApp {
     public static void main(String[] args) {
+        File f = new File("C:\\Users\\asecpin2303_iesmarti\\Documents\\ProyectosIntelliJ\\ACDAT_2223\\ad-t1-tablero\\res\\tablero.props");
 
-        Properties propiedades = new Properties();
+        if (f.exists()){
+            TableroJuego tablero = new TableroJuego(f);
 
-        try {
-            InputStream entrada = new FileInputStream("D:\\ProyectosIntelliJ\\ACDAT_2223\\ad-t1-tablero\\res\\tablero.props");
-            propiedades.load(entrada);
-        } catch (FileNotFoundException e){
+            tablero.toString();
 
-        } catch (IOException e){
-
+        } else {
+            System.out.println("El fichero no existe en la ruta especificada");
         }
-        aishdaksdhasd;
     }
 }

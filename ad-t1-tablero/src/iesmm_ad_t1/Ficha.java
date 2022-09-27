@@ -1,17 +1,22 @@
-public enum Ficha{
-    VALOR1("\uD83D\uDD34"), VALOR2("❌");
+package iesmm_ad_t1;
 
-    private String valor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
-    private Ficha(String valor){
+public class Ficha{
+    private char valor;
+    Ficha(char valor){
         this.valor = valor;
     }
 
-    public String getValor() {
+    public char getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(char valor) {
         this.valor = valor;
     }
 }
