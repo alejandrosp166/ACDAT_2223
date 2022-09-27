@@ -1,5 +1,4 @@
 ﻿package iesmm.ad.t1;
-
 /*
     Desarrollar TableroJuegoApp, implementando los métodos de la clase TableroJuego y Ficha para que permita:
     * leer la información de un fichero properties compuesto de:
@@ -35,7 +34,16 @@
 
 public class TableroJuegoApp {
     public static void main(String[] args) {
-        File propiedades = new File("C:\\Users\\asecpin2303_iesmarti\\Documents\\ProyectosIntelliJ\\ACDAT_2223\\ad-t1-tablero\\res\\tablero.props")
-        TableroJuego tablero = new TableroJuegoApp(propiedades);
+
+        Properties propiedades = new Properties();
+
+        try {
+            InputStream entrada = new FileInputStream("D:\\ProyectosIntelliJ\\ACDAT_2223\\ad-t1-tablero\\res\\tablero.props");
+            propiedades.load(entrada);
+        } catch (FileNotFoundException e){
+
+        } catch (IOException e){
+
+        }
     }
 }

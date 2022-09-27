@@ -1,7 +1,7 @@
 
-    # Dimensiones tablero
-    rows=3
-    cols=4
-    # Fichas
-    value1=🔴
-    value2=❌
+# Dimensiones tablero
+rows=3
+cols=4
+# Fichas
+value1=🔴
+value2=❌

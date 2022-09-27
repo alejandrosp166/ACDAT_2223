@@ -1,5 +1,5 @@
 public enum Ficha{
-    VALOR1("❌"), VALOR2("\uD83D\uDD34");
+    VALOR1("\uD83D\uDD34"), VALOR2("❌");
 
     private String valor;
 
