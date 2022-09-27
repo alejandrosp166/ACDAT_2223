@@ -32,6 +32,7 @@ public class TableroJuego {
 
         for (int i = 0; i < tablero.length;i++){
             for (int j = 0; j < tablero[i].length; j++){
+                //ESTO TIENE QUE TENER 3 VALORES PARA INCLUIR EL VACÍO
                 if(Math.random() * 1 == 1){
                     tablero[i][j] = new Ficha(propiedades.getProperty("value1").charAt(0));
                 } else{
@@ -44,8 +45,11 @@ public class TableroJuego {
     @Override
     public String toString() {
 
-        for(Ficha[] f: tablero){
-            System.out.println(f.toString());
+        for (int i = 0; i < tablero.length;i++){
+            for (int j = 0; j < tablero[i].length; j++){
+                System.out.print(tablero[i][j]);
+            }
+            System.out.println("");
         }
 
         return null;
