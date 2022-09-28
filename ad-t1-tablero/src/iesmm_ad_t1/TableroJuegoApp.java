@@ -9,6 +9,7 @@ package iesmm_ad_t1;
 
     Recuerda incluir el tratamiento de errores y posibles excepciones.
     EJEMPLO -> Valores negativos en el array
+    CREAR EL FICHERO CUANDO NO EXISTE Y RELLENARLO
 
     Representación generada:
     +-----------------+
@@ -24,13 +25,11 @@ import java.util.Properties;
 
 public class TableroJuegoApp {
     public static void main(String[] args) {
-        File f = new File("C:\\Users\\asecpin2303_iesmarti\\Documents\\ProyectosIntelliJ\\ACDAT_2223\\ad-t1-tablero\\res\\tablero.props");
+        File f = new File("res/tablero.props");
 
         if (f.exists()){
             TableroJuego tablero = new TableroJuego(f);
-
-            tablero.toString();
-
+            System.out.println(tablero.toString());
         } else {
             System.out.println("El fichero no existe en la ruta especificada");
         }

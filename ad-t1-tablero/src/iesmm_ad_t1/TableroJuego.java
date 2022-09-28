@@ -9,49 +9,49 @@ public class TableroJuego {
     private Ficha[][] tablero;
 
     public TableroJuego(int nfilas, int ncolumnas) {
-        tablero = new Ficha[nfilas][ncolumnas];
+        this.nfilas = nfilas;
+        this.ncolumnas = ncolumnas;
+        tablero = new Ficha[this.nfilas][this.ncolumnas];
     }
 
     public TableroJuego(File f) {
-
         Properties propiedades = new Properties();
         try {
             InputStream entrada = new FileInputStream(f);
             propiedades.load(entrada);
-
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
         }
+        //CONTROLAR EXCEPCIÓN PARA QUE SEA UN NÚMERO EL INTEGER PARSE INT
         tablero = new Ficha[Integer.parseInt(propiedades.getProperty("rows"))][Integer.parseInt(propiedades.getProperty("cols"))];
         rellenarTablero(propiedades);
     }
 
-    public void rellenarTablero(Properties propiedades){
+    @Override
+    public String toString() {
+        String tableroFormado = "";
+
+        for (int i = 0; i < tablero.length;i++){
+            tableroFormado += "| ";
+            for (int j = 0; j < tablero[i].length; j++){
+                tableroFormado += tablero[i][j].getValor() + " ";
+            }
+            tableroFormado += "|\n";
+        }
+        return tableroFormado;
+    }
+
+    public void rellenarTablero(Properties prop){
 
         for (int i = 0; i < tablero.length;i++){
             for (int j = 0; j < tablero[i].length; j++){
-                //ESTO TIENE QUE TENER 3 VALORES PARA INCLUIR EL VACÍO
-                if(Math.random() * 1 == 1){
-                    tablero[i][j] = new Ficha(propiedades.getProperty("value1").charAt(0));
+
+                if((int)(Math.random() * 2) == 0){
+                    tablero[i][j] = new Ficha(prop.getProperty("value1").charAt(0));
                 } else{
-                    tablero[i][j] = new Ficha(propiedades.getProperty("value2").charAt(0));
+                    tablero[i][j] = new Ficha(prop.getProperty("value2").charAt(0));
                 }
             }
         }
-    }
-
-    @Override
-    public String toString() {
-
-        for (int i = 0; i < tablero.length;i++){
-            for (int j = 0; j < tablero[i].length; j++){
-                System.out.print(tablero[i][j]);
-            }
-            System.out.println("");
-        }
-
-        return null;
     }
 }
