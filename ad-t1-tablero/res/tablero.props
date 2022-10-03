@@ -1,6 +1,6 @@
-#Dimensiones del tablero
-rows=4
+# Dimensiones tablero
+rows=3
 cols=4
-#Fichas
-value1=🔴
-value2=❌
+# Fichas
+value1=\uD83D\uDD34
+value2=\uD83D\uDEA9

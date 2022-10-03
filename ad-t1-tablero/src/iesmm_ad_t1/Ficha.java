@@ -1,15 +1,15 @@
 package iesmm_ad_t1;
 public class Ficha{
-    private char valor;
-    Ficha(char valor){
+    private String valor;
+    Ficha(String valor){
         this.valor = valor;
     }
 
-    public char getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(char valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 }
