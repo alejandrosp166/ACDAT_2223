@@ -9,7 +9,6 @@ public class TableroJuego {
     private Ficha[][] tablero;
 
     public TableroJuego(int nfilas, int ncolumnas) {
-        // PREGUNTAR A ALEJANDRO SOBRE ESTE MÉTODO CONSTRUCTOR Y COMO PUEDE SER IMPLEMETENTADO PARA SU USO
         this.nfilas = nfilas;
         this.ncolumnas = ncolumnas;
         this.tablero = new Ficha[this.nfilas][this.ncolumnas];
@@ -38,7 +37,7 @@ public class TableroJuego {
 
                 if(Math.round((Math.random() * 1)) == 0){
                     tablero[i][j] = new Ficha(c1);
-                } else{
+                } else {
                     tablero[i][j] = new Ficha(c2);
                 }
             }

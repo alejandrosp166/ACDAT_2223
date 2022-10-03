@@ -1,6 +1,6 @@
 #Dimensiones del tablero
-rows=8
-cols=8
+rows=4
+cols=4
 #Fichas
 value1=🔴
 value2=❌
