@@ -49,7 +49,7 @@ public class TableroJuego {
         } catch (NumberFormatException e) {
             // Control de excepción por si el fichero propiedades no almacena un valor númerico en rows o cols
             System.err.println("El valor de rows y cols en el fichero propiedades debe ser un número");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

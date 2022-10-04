@@ -46,7 +46,7 @@ public class TableroJuegoApp {
                 System.out.println("El fichero no existe en la ruta especificada\nDame las filas que tendrá el tablero: ");
                 int rows  = sc.nextInt();
 
-                System.out.println("Ahora dame las columnas que tendrá el fichero: ");
+                System.out.println("Ahora dame las columnas que tendrá el tablero: ");
                 int cols = sc.nextInt();
 
                 TableroJuego juego = new TableroJuego(rows, cols);
