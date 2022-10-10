@@ -6,6 +6,8 @@ import java.util.Collections;
 public class OrdenarArchivoTexto {
     static ArrayList<String> contFichero = new ArrayList<>();
     public static File sort(File f){
+        File fOrdenado = null;
+
         if (f.exists()){
             try {
                 BufferedReader leer = new BufferedReader (new FileReader(f));
@@ -16,11 +18,23 @@ public class OrdenarArchivoTexto {
                     txt = leer.readLine();
                 }
 
+                leer.close();
                 Collections.sort(contFichero);
 
-                for (String p: contFichero){
-                    System.out.println(p);
+                fOrdenado = new File(f.getAbsolutePath().replaceAll(".txt", ".tmp"));
+
+                if(!fOrdenado.exists()){
+                    fOrdenado.createNewFile();
                 }
+
+                FileWriter escribir = new FileWriter(fOrdenado);
+
+                for (String l:contFichero){
+                    escribir.write(l + "\n");
+                }
+
+                escribir.close();
+                
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -29,6 +43,6 @@ public class OrdenarArchivoTexto {
         } else {
             System.err.println("El fichero no se encuentra en la ruta especificada.");
         }
-        return new File("res" + File.separator + f.getAbsolutePath().replaceAll(".txt", ".tmp"));
+        return fOrdenado;
     }
 }
