@@ -1,3 +1,7 @@
+package proyecto1;
+
+import proyecto1.OrdenarArchivoTexto;
+
 import java.io.*;
 
 public class Principal {
