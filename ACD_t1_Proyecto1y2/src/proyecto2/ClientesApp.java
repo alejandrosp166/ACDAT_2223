@@ -13,8 +13,10 @@ public class ClientesApp {
         if (GestionaClientes.generarFichero(f.getAbsolutePath())){
             System.out.println("El fichero se ha generado con éxito, ¿Quieres mostrarlo? (y/n)");
             if (sc.nextLine().equals("y")){
-                GestionaClientes.mostrarFichero(new File("res" + File.separator + fileName));
+                GestionaClientes.mostrarFichero(new File(f.getAbsolutePath().replaceFirst(".csv",".dat")));
             }
+
+            GestionaClientes.ordenarPorNombre(new File(f.getAbsolutePath().replaceFirst(".csv",".dat")));
 
         } else {
             System.err.println("Error al generar el fichero");
