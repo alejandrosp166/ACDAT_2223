@@ -24,7 +24,7 @@ public class ClientesApp {
                     System.out.println("Se han generado dos ficheros .tmp serializados ordenados por nombre (APARTADO 3)");
                 }
 
-                System.out.println("Ahora vamos a ordenar los ficheros cliente1.csv y clientes2.csv en un solo fichero .dat, dame la ruta donde quieres generar el fichero: (APARTADO 4)");
+                System.out.println("Ahora vamos a ordenar los ficheros cliente1.csv y clientes2.csv en un solo fichero .dat, dame la ruta donde quieres generar el fichero (Debe ser absoluta): (APARTADO 4)");
                 GestionaClientes.duplicados(new File("res" + File.separator +"clientes1.dat"), new File("res" + File.separator + "clientes2.dat"), sc.nextLine());
             } else {
                 System.err.println("Error al generar los ficheros");
