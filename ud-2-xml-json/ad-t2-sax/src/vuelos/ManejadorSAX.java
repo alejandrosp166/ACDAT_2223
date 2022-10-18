@@ -1,4 +1,4 @@
-package libros;
+package vuelos;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -7,7 +7,7 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ManejadorSAX extends DefaultHandler {
 
     private String xmlResult;
-    int contLibros=0;
+    int contVuelos = 0;
 
     public ManejadorSAX() {
         xmlResult = "";
@@ -37,7 +37,6 @@ public class ManejadorSAX extends DefaultHandler {
     @Override
     public void endDocument() throws SAXException {
         xmlResult += "FIN DEL DOCUMENTO XML\n";
-        // + contLibros + " Libros"
     }
 
     /**
@@ -46,9 +45,9 @@ public class ManejadorSAX extends DefaultHandler {
     @Override
     public void startElement(String uri, String nombre, String elemento,
                              Attributes atts) throws SAXException {
-        xmlResult += "INICIO NODO: " + elemento + "\n";
-        if (elemento.equalsIgnoreCase("libro")){
-            contLibros++;
+        if (elemento.equalsIgnoreCase("vuelo")){
+            contVuelos++;
+            xmlResult += "VUELO " + contVuelos + ":\n";
         }
     }
 
