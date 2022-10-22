@@ -5,7 +5,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class ManejadorSAX extends DefaultHandler {
-
     private String xmlResult;
     int contVuelos = 0;
 
@@ -28,7 +27,7 @@ public class ManejadorSAX extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
-        xmlResult += "COMIENZO DEL DOCUMENTO XML\n";
+        // xmlResult += "COMIENZO DEL DOCUMENTO XML\n";
     }
 
     /**
@@ -36,16 +35,15 @@ public class ManejadorSAX extends DefaultHandler {
      */
     @Override
     public void endDocument() throws SAXException {
-        xmlResult += "FIN DEL DOCUMENTO XML\n";
+        // xmlResult += "FIN DEL DOCUMENTO XML\n";
     }
 
     /**
      * COMIENZO DEL ELEMENTO
      */
     @Override
-    public void startElement(String uri, String nombre, String elemento,
-                             Attributes atts) throws SAXException {
-        if (elemento.equalsIgnoreCase("vuelo")){
+    public void startElement(String uri, String nombre, String elemento, Attributes atts) throws SAXException {
+        if (elemento.equalsIgnoreCase("vuelo")) {
             contVuelos++;
             xmlResult += "VUELO " + contVuelos + ":\n";
         }
@@ -55,10 +53,9 @@ public class ManejadorSAX extends DefaultHandler {
      * FIN DEL ELEMENTO
      */
     @Override
-    public void endElement(String uri, String nombre, String elemento)
-            throws SAXException {
+    public void endElement(String uri, String nombre, String elemento) throws SAXException {
         //System.out.println("-->" + elemento + " nombre: " + nombre);
-        xmlResult += "FIN NODO: " + elemento + "\n";
+        // xmlResult += "FIN NODO: " + elemento + "\n";
     }
 
     /**
@@ -70,13 +67,18 @@ public class ManejadorSAX extends DefaultHandler {
      * @param longitud  Número de carácteres
      * @throws SAXException Cualquier excepción producida en la lectura del valor
      */
+    String origenDestino = "\t\tORIGEN: ";
     @Override
-    public void characters(char[] cadena, int posinicio, int longitud)
-            throws SAXException {
+    public void characters(char[] cadena, int posinicio, int longitud) throws SAXException {
         //System.out.println("Valor leido ->" + new String(cadena, posinicio, longitud));
         // OPCIÓN 1
-        xmlResult += "VALOR: " + new String(cadena, posinicio, longitud) + "\n";
+        xmlResult += origenDestino + new String(cadena, posinicio, longitud) + "\n";
 
+        if(origenDestino.equals("\t\tORIGEN: ")){
+            origenDestino = "\t\tDESTINO: ";
+        } else if (origenDestino.equals("\t\tDESTINO: ")){
+            origenDestino = "\t\tORIGEN: ";
+        }
         // OPCIÓN 2
         // for (int i = start; i < length + start; i++)
         // result += Character.toString(cadena[i]);
@@ -92,8 +94,7 @@ public class ManejadorSAX extends DefaultHandler {
      * @param longitud  Número de carácteres
      * @throws SAXException Cualquier excepción producida en la lectura del valor
      */
-    public void ignorableWhitespace(char[] cadena, int posinicio, int longitud)
-            throws SAXException {
+    public void ignorableWhitespace(char[] cadena, int posinicio, int longitud) throws SAXException {
         // System.out.println("Es un blanco");
     }
 }
