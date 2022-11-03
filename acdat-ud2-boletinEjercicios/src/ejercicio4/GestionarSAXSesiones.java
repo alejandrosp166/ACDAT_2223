@@ -6,9 +6,9 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 
-public class GestionarSAXEmpleados {
+public class GestionarSAXSesiones {
     // Objeto Handler que almacena el XML seleccionado durante el recorrido.
-    private ManejadorSAXEmpleados handler;
+    private ManejadorSAXSesiones handler;
 
     public void imprimirNodos() {
         System.out.println(handler.getXMLResult());
@@ -22,7 +22,7 @@ public class GestionarSAXEmpleados {
             // Se crea un objeto SAXParser para interpretar el documento XML.
             SAXParser parser = factory.newSAXParser();
 
-            handler = new ManejadorSAXEmpleados();
+            handler = new ManejadorSAXSesiones();
 
             // Se da la salida al parser para que comience a manejar el
             // documento XML. Esto recorrerá secuencialmente el documento XML

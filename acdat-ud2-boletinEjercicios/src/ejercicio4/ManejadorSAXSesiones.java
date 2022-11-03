@@ -4,11 +4,11 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class ManejadorSAXEmpleados extends DefaultHandler {
+public class ManejadorSAXSesiones extends DefaultHandler {
     private String xmlResult;
     int numeroEmpleados = 0;
 
-    public ManejadorSAXEmpleados() {
+    public ManejadorSAXSesiones() {
         xmlResult = "";
     }
 
@@ -36,20 +36,25 @@ public class ManejadorSAXEmpleados extends DefaultHandler {
     @Override
     public void endDocument() throws SAXException {
         System.out.println("Documento XML parseado correctamente");
-        xmlResult += "\nNúmero de empleados: " + numeroEmpleados;
     }
 
     /**
      * COMIENZO DEL ELEMENTO
      */
+    boolean noMostrarHoras = true;
     @Override
     public void startElement(String uri, String nombre, String elemento, Attributes atts) throws SAXException {
         switch (elemento){
-            case "nombre":
+            case "username":
                 xmlResult += "\n";
                 break;
-            case "Empleado":
-                numeroEmpleados++;
+            case "password":
+                xmlResult += ":";
+                break;
+            default:
+                if (elemento.equals("horainicio") || elemento.equals("horafinal")){
+                    noMostrarHoras = false;
+                }
                 break;
         }
     }
@@ -74,9 +79,10 @@ public class ManejadorSAXEmpleados extends DefaultHandler {
 
     @Override
     public void characters(char[] cadena, int posinicio, int longitud) throws SAXException {
-        //System.out.println("Valor leido ->" + new String(cadena, posinicio, longitud));
-        // OPCIÓN 1
-        xmlResult += new String(cadena, posinicio, longitud) + " ";
+        if (noMostrarHoras) {
+            xmlResult += new String(cadena, posinicio, longitud);
+        }
+        noMostrarHoras = true;
     }
 
     /**

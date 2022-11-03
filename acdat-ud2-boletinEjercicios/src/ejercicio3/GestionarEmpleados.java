@@ -1,12 +1,10 @@
-package ejercicio4;
-
-import ejercicio3.GestionarSAXEmpleados;
+package ejercicio3;
 
 import java.io.File;
 
 public class GestionarEmpleados {
     public static void main(String args[]) {
-        GestionarSAXEmpleados MyParser = new ejercicio4.GestionarSAXEmpleados();
+        GestionarSAXEmpleados MyParser = new GestionarSAXEmpleados();
 
         if (MyParser.abrir_XML_SAX(new File("res" + File.separator + "empleados.xml")) == 0) {
             // Si el documento se ha parseado correctamente

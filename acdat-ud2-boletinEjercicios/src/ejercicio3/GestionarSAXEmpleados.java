@@ -1,4 +1,4 @@
-package ejercicio4;
+package ejercicio3;
 
 import ejercicio3.ManejadorSAXEmpleados;
 import org.xml.sax.SAXException;
@@ -23,7 +23,7 @@ public class GestionarSAXEmpleados {
             // Se crea un objeto SAXParser para interpretar el documento XML.
             SAXParser parser = factory.newSAXParser();
 
-            handler = new ejercicio4.ManejadorSAXEmpleados();
+            handler = new ManejadorSAXEmpleados();
 
             // Se da la salida al parser para que comience a manejar el
             // documento XML. Esto recorrerá secuencialmente el documento XML
