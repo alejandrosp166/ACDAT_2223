@@ -1,22 +1,18 @@
-package ejercicio1;
+package ejercicio4;
 
-import java.io.File;
+import ejercicio3.ManejadorSAXEmpleados;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+import java.io.File;
 
-public class GestionarSAX {
+public class GestionarSAXEmpleados {
     // Objeto Handler que almacena el XML seleccionado durante el recorrido.
-    private DefaultHandler handler;
-
-    public GestionarSAX(DefaultHandler manejador) {
-        this.handler = manejador;
-    }
+    private ManejadorSAXEmpleados handler;
 
     public void imprimirNodos() {
-        System.out.println(handler.toString());
+        System.out.println(handler.getXMLResult());
     }
 
     public int abrir_XML_SAX(File fichero) {
@@ -26,6 +22,8 @@ public class GestionarSAX {
 
             // Se crea un objeto SAXParser para interpretar el documento XML.
             SAXParser parser = factory.newSAXParser();
+
+            handler = new ejercicio4.ManejadorSAXEmpleados();
 
             // Se da la salida al parser para que comience a manejar el
             // documento XML. Esto recorrerá secuencialmente el documento XML

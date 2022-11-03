@@ -1,14 +1,14 @@
-package ejercicio1;
+package ejercicio4;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class ManejadorSAXMapa extends DefaultHandler {
+public class ManejadorSAXEmpleados extends DefaultHandler {
     private String xmlResult;
-    int contVuelos = 0;
+    int numeroEmpleados = 0;
 
-    public ManejadorSAXMapa() {
+    public ManejadorSAXEmpleados() {
         xmlResult = "";
     }
 
@@ -27,7 +27,7 @@ public class ManejadorSAXMapa extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
-        // xmlResult += "COMIENZO DEL DOCUMENTO XML\n";
+
     }
 
     /**
@@ -35,7 +35,8 @@ public class ManejadorSAXMapa extends DefaultHandler {
      */
     @Override
     public void endDocument() throws SAXException {
-        // xmlResult += "FIN DEL DOCUMENTO XML\n";
+        System.out.println("Documento XML parseado correctamente");
+        xmlResult += "\nNúmero de empleados: " + numeroEmpleados;
     }
 
     /**
@@ -43,9 +44,13 @@ public class ManejadorSAXMapa extends DefaultHandler {
      */
     @Override
     public void startElement(String uri, String nombre, String elemento, Attributes atts) throws SAXException {
-        if (elemento.equalsIgnoreCase("vuelo")) {
-            contVuelos++;
-            xmlResult += "VUELO " + contVuelos + ":\n";
+        switch (elemento){
+            case "nombre":
+                xmlResult += "\n";
+                break;
+            case "Empleado":
+                numeroEmpleados++;
+                break;
         }
     }
 
@@ -54,8 +59,7 @@ public class ManejadorSAXMapa extends DefaultHandler {
      */
     @Override
     public void endElement(String uri, String nombre, String elemento) throws SAXException {
-        //System.out.println("-->" + elemento + " nombre: " + nombre);
-        // xmlResult += "FIN NODO: " + elemento + "\n";
+
     }
 
     /**
@@ -67,21 +71,12 @@ public class ManejadorSAXMapa extends DefaultHandler {
      * @param longitud  Número de carácteres
      * @throws SAXException Cualquier excepción producida en la lectura del valor
      */
-    String origenDestino = "\t\tORIGEN: ";
+
     @Override
     public void characters(char[] cadena, int posinicio, int longitud) throws SAXException {
         //System.out.println("Valor leido ->" + new String(cadena, posinicio, longitud));
         // OPCIÓN 1
-        xmlResult += origenDestino + new String(cadena, posinicio, longitud) + "\n";
-
-        if(origenDestino.equals("\t\tORIGEN: ")){
-            origenDestino = "\t\tDESTINO: ";
-        } else if (origenDestino.equals("\t\tDESTINO: ")){
-            origenDestino = "\t\tORIGEN: ";
-        }
-        // OPCIÓN 2
-        // for (int i = start; i < length + start; i++)
-        // result += Character.toString(cadena[i]);
+        xmlResult += new String(cadena, posinicio, longitud) + " ";
     }
 
     /**
