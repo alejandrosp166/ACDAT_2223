@@ -4,9 +4,13 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.io.File;
+import java.io.FileWriter;
+
 public class ManejadorSAXSesiones extends DefaultHandler {
     private String xmlResult;
     int numeroEmpleados = 0;
+    boolean noMostrarHoras = true;
 
     public ManejadorSAXSesiones() {
         xmlResult = "";
@@ -20,28 +24,24 @@ public class ManejadorSAXSesiones extends DefaultHandler {
         this.xmlResult = xmlResult;
     }
 
-    // SOBRECARGA DE EVENTOS DE LA CLASE HANDLER
-
-    /**
-     * INICIO DEL DOCUMENTO XML
-     */
     @Override
     public void startDocument() throws SAXException {
 
     }
 
-    /**
-     * FIN DEL DOCUMENTO XML
-     */
     @Override
     public void endDocument() throws SAXException {
-        System.out.println("Documento XML parseado correctamente");
+        try {
+            System.out.println("Documento XML parseado correctamente");
+            FileWriter escribir = new FileWriter("res" + File.separator + "");
+            escribir.write(xmlResult);
+            escribir.close();
+
+        } catch (Exception e) {
+            System.err.println("Error general");
+        }
     }
 
-    /**
-     * COMIENZO DEL ELEMENTO
-     */
-    boolean noMostrarHoras = true;
     @Override
     public void startElement(String uri, String nombre, String elemento, Attributes atts) throws SAXException {
         switch (elemento){
@@ -59,23 +59,10 @@ public class ManejadorSAXSesiones extends DefaultHandler {
         }
     }
 
-    /**
-     * FIN DEL ELEMENTO
-     */
     @Override
     public void endElement(String uri, String nombre, String elemento) throws SAXException {
 
     }
-
-    /**
-     * CADENA DE CARACTERES (VALOR DEL CONTENIDO)
-     *
-     * @param cadena    Cadena de caracteres extraída del elemento como valor
-     *                  específico
-     * @param posinicio Posición del caracter dentro del documento XML
-     * @param longitud  Número de carácteres
-     * @throws SAXException Cualquier excepción producida en la lectura del valor
-     */
 
     @Override
     public void characters(char[] cadena, int posinicio, int longitud) throws SAXException {
@@ -83,19 +70,5 @@ public class ManejadorSAXSesiones extends DefaultHandler {
             xmlResult += new String(cadena, posinicio, longitud);
         }
         noMostrarHoras = true;
-    }
-
-    /**
-     * CADENA DE CARACTERES EN BLANCO (solo cuando la DTD esté incluida como
-     * recurso o dentro del mismo documento)
-     *
-     * @param cadena    Cadena de caracteres extraída del elemento como valor
-     *                  específico
-     * @param posinicio Posición del caracter dentro del documento XML
-     * @param longitud  Número de carácteres
-     * @throws SAXException Cualquier excepción producida en la lectura del valor
-     */
-    public void ignorableWhitespace(char[] cadena, int posinicio, int longitud) throws SAXException {
-        // System.out.println("Es un blanco");
     }
 }
