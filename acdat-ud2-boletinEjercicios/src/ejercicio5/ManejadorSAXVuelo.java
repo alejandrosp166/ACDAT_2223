@@ -9,8 +9,6 @@ import java.io.FileWriter;
 
 public class ManejadorSAXVuelo extends DefaultHandler {
     private String xmlResult;
-    boolean origenDestino = false;
-
     public ManejadorSAXVuelo() {
         xmlResult = "";
     }
@@ -51,20 +49,19 @@ public class ManejadorSAXVuelo extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String nombre, String elemento) throws SAXException {
-        if (elemento.equals("origen") || elemento.equals("destino")) {
-            xmlResult += "</td>";
-        } else if (elemento.equals("Vuelo")){
-            xmlResult += "</tr>";
-        }
+        refact(elemento, "/");
     }
 
     @Override
     public void startElement(String uri, String nombre, String elemento, Attributes atts) throws SAXException {
+        refact(elemento, "");
+    }
 
+    private void refact(String elemento, String slash) {
         if (elemento.equals("origen") || elemento.equals("destino")) {
-            xmlResult += "<td>";
-        } else if (elemento.equals("Vuelo")){
-            xmlResult += "<tr>";
+            xmlResult += "<" + slash + "td>";
+        } else if (elemento.equals("Vuelo")) {
+            xmlResult += "<" + slash + "tr>";
         }
     }
 
