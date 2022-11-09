@@ -38,7 +38,7 @@ public class ManejadorSAXVuelo extends DefaultHandler {
         xmlResult += "</table></body></html>";
         try {
             System.out.println("Documento XML parseado correctamente");
-            FileWriter escribir = new FileWriter("res" + File.separator + "parseado.html");
+            FileWriter escribir = new FileWriter("res" + File.separator + "parseadoVuelo.html");
             escribir.write(xmlResult);
             escribir.close();
 

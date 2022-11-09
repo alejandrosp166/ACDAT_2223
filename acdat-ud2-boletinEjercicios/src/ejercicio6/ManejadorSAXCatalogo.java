@@ -42,7 +42,7 @@ public class ManejadorSAXCatalogo extends DefaultHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        xmlResult += "<!DOCTYPE html><html><head><title>VideoJuegos</title></head><body><h1>CATÁLOGO DE VIDEOJUEGOS CLÁSICOS</h1><table border><tr>";
+        xmlResult += "<!DOCTYPE html><html><head><title>VideoJuegos</title></head><body><center><h1>CATÁLOGO DE VIDEOJUEGOS CLÁSICOS</h1></center><table style=\"margin: 0 auto;\" border><tr>";
     }
 
     @Override
@@ -50,13 +50,13 @@ public class ManejadorSAXCatalogo extends DefaultHandler {
         if (esVideojuego) {
             switch (elemento) {
                 case "titulo":
-                    xmlResult += "</b></br>";
+                    xmlResult += "</b></center>";
                     break;
                 case "plataforma":
-                    xmlResult += "</br>";
+                    xmlResult += "</center>";
                     break;
                 case "stock":
-                    xmlResult += "</td>";
+                    xmlResult += "</center></td>";
                     esVideojuego = false;
                     break;
             }
@@ -70,10 +70,10 @@ public class ManejadorSAXCatalogo extends DefaultHandler {
         } else if (esVideojuego) {
             switch (elemento) {
                 case "titulo":
-                    xmlResult += "<td><b>";
+                    xmlResult += "<td style=\"padding: 1em;\"><center>@#~%&=}ç<b>";
                     break;
                 case "plataforma":
-                    xmlResult += "Consola: ";
+                    xmlResult += "<center>Consola: ";
                     break;
                 case "caratula":
                     esCaratula = true;
@@ -82,10 +82,16 @@ public class ManejadorSAXCatalogo extends DefaultHandler {
                     esCaptura = true;
                     break;
                 case "stock":
-                    xmlResult += "Stock actual: ";
+                    xmlResult += "<center>Stock actual: ";
                     break;
             }
         }
+    }
+
+    private void aniadirImagen(String caratula) {
+        String[] temp = xmlResult.split("@#~%&=}ç");
+        temp[0] += "<img src=\"" + caratula + "\"/></br>" + temp[1];
+        xmlResult = temp[0];
     }
 
     @Override
@@ -94,7 +100,7 @@ public class ManejadorSAXCatalogo extends DefaultHandler {
             if (!esCaratula && !esCaptura) {
                 xmlResult += new String(cadena, posinicio, longitud);
             } else if (esCaratula) {
-                caratula = new String(cadena, posinicio, longitud);
+                aniadirImagen(new String(cadena, posinicio, longitud));
                 esCaratula = false;
             } else {
                 esCaptura = false;
