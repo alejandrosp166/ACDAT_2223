@@ -1,0 +1,3 @@
+Alejandro puede que de un error de compilación en los ejercicios 2,3,4,5 y 6.
+En las líneas 7 de todos los documentos que tienen el main Gestionar(Vuelo, Catalogo, Sesiones...),
+simplemente reescríbela y ya funciona.

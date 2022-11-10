@@ -1,0 +1,2 @@
+Alejandro puede que de un error de compilación en los ejercicios 2,3,4,5 y 6.
+Da fallo en las clases main, en las líneas 7 de todos los documentos, simplemente reescríbela y ya funciona

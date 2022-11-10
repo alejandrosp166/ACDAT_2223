@@ -9,8 +9,7 @@ import java.io.FileWriter;
 
 public class ManejadorSAXSesiones extends DefaultHandler {
     private String xmlResult;
-    int numeroEmpleados = 0;
-    boolean noMostrarHoras = true;
+    boolean noMostrarHoras;
 
     public ManejadorSAXSesiones() {
         xmlResult = "";
@@ -33,7 +32,7 @@ public class ManejadorSAXSesiones extends DefaultHandler {
     public void endDocument() throws SAXException {
         try {
             System.out.println("Documento XML parseado correctamente");
-            FileWriter escribir = new FileWriter("res" + File.separator + "");
+            FileWriter escribir = new FileWriter("res" + File.separator + "gestionarSesiones.txt");
             escribir.write(xmlResult);
             escribir.close();
 
@@ -44,31 +43,29 @@ public class ManejadorSAXSesiones extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String nombre, String elemento, Attributes atts) throws SAXException {
-        switch (elemento){
-            case "username":
-                xmlResult += "\n";
-                break;
-            case "password":
-                xmlResult += ":";
-                break;
-            default:
-                if (elemento.equals("horainicio") || elemento.equals("horafinal")){
-                    noMostrarHoras = false;
-                }
-                break;
+        if (elemento.equals("horainicio") || elemento.equals("horafinal")){
+            noMostrarHoras = true;
+        } else {
+            noMostrarHoras = false;
         }
     }
 
     @Override
     public void endElement(String uri, String nombre, String elemento) throws SAXException {
-
+        switch (elemento) {
+            case "username":
+                xmlResult += ":";
+                break;
+            case "password":
+                xmlResult += "\n";
+                break;
+        }
     }
 
     @Override
     public void characters(char[] cadena, int posinicio, int longitud) throws SAXException {
-        if (noMostrarHoras) {
+        if (!noMostrarHoras) {
             xmlResult += new String(cadena, posinicio, longitud);
         }
-        noMostrarHoras = true;
     }
 }
