@@ -88,9 +88,9 @@ public class ManejadorSAXCatalogo extends DefaultHandler {
         }
     }
 
-    private void aniadirImagen(String caratula) {
+    private void aniadirImagen(String img) {
         String[] temp = xmlResult.split("@#~%&=}ç");
-        temp[0] += "<img src=\"" + caratula + "\"/></br>" + temp[1];
+        temp[0] += "<td><img src=\"" + img + "\"/></td>" + temp[1];
         xmlResult = temp[0];
     }
 
